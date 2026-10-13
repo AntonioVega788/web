@@ -1,0 +1,173 @@
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    margin: 0;
+    padding: 20px 14px 40px;
+    min-height: 100vh;
+    color: #1f2937;
+    font-family: roboto, Arial, sans-serif;
+    background: linear-gradient(135deg, #ffe4ec 0%, #e8e4ff 45%, #dff4ff 100%) fixed;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+/* ---------- Texto ---------- */
+h1 {
+    font-family: isometra, 'Plus Jakarta Sans', Arial, sans-serif;
+    font-size: clamp(1.5rem, 5.5vw, 2.6rem);
+    line-height: 1.2;
+    color: #e11d48;
+    background: linear-gradient(90deg, #e11d48, #7c3aed, #2563eb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: fit-content;
+    max-width: 100%;
+    margin: .4em auto .8em;
+    overflow-wrap: break-word;
+}
+
+p {
+    font-family: roboto, Arial, sans-serif;
+    line-height: 1.55;
+    text-align: left;
+    margin: .4em 0;
+}
+
+h4 {
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+    color: var(--accent, #2563eb);
+    margin: .2em 0;
+}
+
+h2 {
+    font-family: roboto, Arial, sans-serif;
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    color: var(--accent, #2563eb);
+    margin: .2em 0;
+}
+
+/* ---------- Botones ---------- */
+input[type=submit] {
+    display: block;
+    margin: 28px auto 0;
+    padding: 12px 22px;
+    max-width: 100%;
+    white-space: normal;
+    border: 0;
+    border-radius: 999px;
+    color: #fff;
+    background: linear-gradient(90deg, #7c3aed, #2563eb);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, .3);
+    font-family: roboto, Arial, sans-serif;
+    font-size: clamp(1rem, 3.8vw, 1.2rem);
+    cursor: pointer;
+}
+input[type=submit]:hover { filter: brightness(1.12); }
+input:focus-visible, textarea:focus-visible {
+    outline: 3px solid #f59e0b;
+    outline-offset: 2px;
+}
+
+/* ---------- Tabla de IAs (index.html) ---------- */
+table.ia {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 14px 0;
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+    font-size: clamp(.95rem, 1.6vw, 1.05rem);
+}
+
+.ia td {
+    width: 33.33%;
+    padding: 14px;
+    vertical-align: top;
+    background: var(--tint);
+    border-left: 5px solid var(--accent);
+}
+.ia td:nth-child(1) { --c: 1; --accent: #0e8a6d; --tint: #e3f7f0; }
+.ia td:nth-child(2) { --c: 2; --accent: #2f5fe0; --tint: #e6edff; }
+.ia td:nth-child(3) { --c: 3; --accent: #d9622b; --tint: #fff0e3; }
+
+.ia tr:nth-child(1) { --r: 1; }
+.ia tr:nth-child(2) { --r: 2; }
+.ia tr:nth-child(3) { --r: 3; }
+.ia tr:nth-child(4) { --r: 4; }
+.ia tr:nth-child(5) { --r: 5; }
+.ia tr:nth-child(6) { --r: 6; }
+
+.ia tr:nth-child(1) td { border-radius: 16px 16px 0 0; }
+.ia tr:nth-child(6) td { border-radius: 0 0 16px 16px; }
+
+.ia td a { color: var(--accent); font-weight: 600; overflow-wrap: anywhere; }
+
+/* ---------- Formulario (formulario.html) ---------- */
+form.tarjeta {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 22px;
+    text-align: left;
+    background: #fff;
+    border-radius: 18px;
+    border-top: 8px solid #7c3aed;
+    box-shadow: 0 8px 24px rgba(124, 58, 237, .18);
+}
+
+table.formulario {
+    width: 100%;
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+    font-size: clamp(1rem, 2.2vw, 1.15rem);
+    color: #4c1d95;
+}
+.formulario td { padding: 8px 6px; vertical-align: top; }
+.formulario td:first-child { width: 40%; font-weight: 600; }
+
+.formulario input[type=text],
+.formulario input[type=email],
+.formulario textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-family: roboto, Arial, sans-serif;
+    font-size: 16px; /* evita el zoom automático en iPhone */
+    color: #1f2937;
+    background: #f5f3ff;
+    border: 2px solid #c4b5fd;
+    border-radius: 10px;
+}
+.formulario textarea { resize: vertical; }
+.formulario input[type=submit] { margin: 8px 0 0; }
+
+/* ---------- Celulares y tabletas pequeñas ---------- */
+@media (max-width: 760px) {
+    body { padding: 14px 10px 30px; }
+
+    /* La tabla de IAs se apila: una tarjeta por IA, en orden */
+    table.ia, .ia tbody { display: block; width: 100%; }
+    .ia tbody { display: grid; grid-template-columns: minmax(0, 1fr); }
+    .ia tr { display: contents; }
+    .ia td {
+        width: auto;
+        order: calc(var(--c) * 10 + var(--r));
+    }
+    .ia tr:nth-child(6) td { margin-bottom: 20px; }
+
+    /* El formulario ocupa todo el ancho */
+    form.tarjeta { padding: 16px; }
+    .formulario, .formulario tbody, .formulario tr, .formulario td {
+        display: block;
+        width: 100%;
+    }
+    .formulario td:first-child { width: 100%; padding-bottom: 2px; }
+    .formulario input[type=submit] { width: 100%; }
+}
